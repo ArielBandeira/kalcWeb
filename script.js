@@ -21,21 +21,56 @@ const sub = document.querySelector('button[data-val="-"]');
 const somar = document.querySelector('button[data-val="+"]');
 const igual = document.querySelector('button[data-val="="]');
 
-
 const screen = document.querySelector('.screen');
+
+let valorAtual = 0;
+let valorAntigo = 0;
+let resultado = 0;
+let operador = 0;
 
 function show(element) {
     screen.innerText += element.innerText;
+    valorAtual = screen.innerText;
+}
+
+function showe(resultado, operador) {
+    if(operador == igual){
+      screen.innerText = resultado;
+    }
 }
 
 function limpar() {
     screen.innerText = "";
 }
 
-
-function operacao(element) {
-    if(element.innerText == '+'){
-        valor = parseInt(screen.innerText);
+function operacao(operador){
+    if (operador == somar) {
+        resultado = Number(valorAtual) + Number(valorAntigo);
+        valorAtual = valorAntigo;
+        valorAntigo = resultado;
+        screen.innerText = "";
+        console.log(resultado);
+        return showe(resultado, operador);
     }
-    limpar();
+    if (operador == sub) {
+        resultado = (Number(valorAntigo) - Number(valorAtual));
+        valorAntigo = valorAtual;
+        valorAtual = resultado;
+        screen.innerText = "";
+        console.log(resultado);
+    }
+    if (operador == mult) {
+      resultado = Number(valorAtual) * Number(valorAntigo);
+      valorAntigo = valorAtual;
+      valorAtual = resultado;
+      screen.innerText = "";
+      console.log(resultado);
+    }
+    if (operador == div) {
+      resultado = Number(valorAntigo) / Number(valorAtual);
+      valorAntigo = valorAtual;
+      valorAtual = resultado;
+      screen.innerText = "";
+      console.log(resultado);
+    }
 }
